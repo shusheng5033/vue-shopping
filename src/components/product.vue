@@ -27,13 +27,11 @@ export default {
     };
   },
   methods: {
-    //这是初始化所有的数据，也就说，这是默认的情况下的数据，这个页面是根据商品的id来进行渲染的单个商品组件
     
     handleCart() {
       this.$store.commit("addCart", this.info.id);
     }
   },
-  
 };
 </script>
 

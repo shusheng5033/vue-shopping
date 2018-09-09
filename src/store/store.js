@@ -32,7 +32,14 @@ const actions = {
 }
 // 数据的再处理
 const getters = {
-
+	brands: state =>{
+		const brands = state.productList.map(item => item.brand);
+		return Array.from(new Set(brands));
+	},
+	colors: state =>{
+		const colors = state.productList.map(item => item.color);
+		return Array.from(new Set(colors));
+	}
 }
 
 // 导出

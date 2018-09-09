@@ -12,15 +12,15 @@ export default new Router({
       meta:{
       	title:"商品列表"
       },
-      component:(resolve) => require(['@/views/list'],resolve)
+      component:(resolve) => require(['../views/list'],resolve)
     },
     {
       path: '/product/:id',
-      meta:{
-      	title:"商品详情"
+      meta: {
+          title: '商品详情'
       },
-      component:(resolve) => require(['@/components/product'],resolve)
-    },
+      component: (resolve) => require(['../views/product.vue'], resolve)
+  },
     {
       path: '*',
       redirect: '/list'

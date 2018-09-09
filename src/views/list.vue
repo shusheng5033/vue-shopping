@@ -3,7 +3,8 @@
         <div class="list-control">
             <div class="list-control-filter">
                 <span>品牌：</span>
-                <span class="list-control-filter-item" :class="{on: item === filterBrand}" v-for="item in brands" @click="handleFilterBrand(item)">{{ item }}</span>
+                <span class="list-control-filter-item" :class="{on: item === filterBrand}" v-for="(item,index) in brands"
+                    :key="index" @click="handleFilterBrand(item)">{{ item }}</span>
             </div>
             <div class="list-control-filter">
                 <span>颜色：</span>
@@ -11,6 +12,7 @@
                     class="list-control-filter-item"
                     :class="{on: item === filterColor}"
                     v-for="(item,index) in colors"
+                    :key="index"
                     @click="handleFilterColor(item)">{{ item }}</span>
             </div>
             <div class="list-control-order">
@@ -41,7 +43,7 @@
     </div>
 </template>
 <script>
-import product from "@/components/product.vue";
+import product from "../components/product.vue";
 export default {
   components: { product },
   data() {
@@ -85,12 +87,66 @@ export default {
       return list;
     }
   },
+  methods: {
+    handleFilterBrand(brand) {
+      if (this.filterBrand === brand) {
+        this.filterBrand = "";
+      } else {
+        this.filterBrand = brand;
+      }
+    },
+    handleFilterColor(color) {
+      if (this.filterColor === color) {
+        this.filterColor = "";
+      } else {
+        this.filterColor = color;
+      }
+    },
+    handleOrderDefault() {
+      this.order = "";
+    },
+    handleOrderSales() {
+      this.order = "sales";
+    },
+    handleOrderCost() {
+      if (this.order === "cost-desc") {
+        this.order = "cost-asc";
+      } else {
+        this.order = "cost-desc";
+      }
+    }
+  },
   mounted() {
     this.$store.dispatch("getProductList");
   }
 };
 </script>
 <style scoped>
+.list-control {
+  background: #fff;
+  border-radius: 6px;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.list-control-filter {
+  margin-bottom: 16px;
+}
+.list-control-filter-item,
+.list-control-order-item {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid #e9eaec;
+  border-radius: 4px;
+  margin-right: 6px;
+  padding: 2px 6px;
+}
+.list-control-filter-item.on,
+.list-control-order-item.on {
+  background: #f2352e;
+  border: 1px solid #f2352e;
+  color: #fff;
+}
 .product-not-found {
   text-align: center;
   padding: 32px;
