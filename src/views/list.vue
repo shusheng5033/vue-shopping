@@ -32,7 +32,7 @@
                     class="list-control-order-item"
                     :class="{on: order.indexOf('cost') > -1}"
                     @click="handleOrderCost">
-                    价格
+                    价格1
                     <template v-if="order === 'cost-asc'">↑</template>
                     <template v-if="order === 'cost-desc'">↓</template>
                 </span>
