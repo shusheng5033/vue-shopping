@@ -19,6 +19,32 @@ const mutations = {
 	// 给state 里面的列表添加数据
 	setProductList(state,data){
 		state.productList = data;
+	},
+	// 购物车成员
+	addCart(state,id){
+		const isAdded = state.carList.find(item => item.id === id); //判断该购物车内是否有该成员，有就+1，没有就添加。find方法返回第一个匹配的成员，否则返回undefined
+		if(isAdded){
+			isAdded.count += 1;
+		} else {
+			state.carList.push({
+				id:id,
+				count:1
+			})
+		}
+	},
+	// 修改商品数量
+	editCartCount(state,payload){
+		const product = state.carList.find(item => item.id === payload.id);
+		product.count += payload.count;
+	},
+	// 删除商品
+	deleteCart(state,id){
+		const index = state.carList.findIndex(item => item.id === id);
+		state.carList.splice(index,1);
+	},
+	// 清空购物车
+	emptyCart(state){
+		state.carList = [];
 	}
 }
 // 执行异步数据

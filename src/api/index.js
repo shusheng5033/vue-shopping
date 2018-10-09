@@ -8,3 +8,6 @@ axios.defaults.baseURL = baseurl;
 export const products = () => {
     return axios.get('product.json').then(res=>res.data);
 }
+
+
+// 

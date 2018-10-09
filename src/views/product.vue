@@ -23,7 +23,7 @@ import { products } from "../api";
 export default {
   data() {
     return {
-      id: 1,
+      id: parseInt(this.$route.params.id),
       product: null
     };
   },
@@ -34,7 +34,7 @@ export default {
       });
     },
     handleAddToCart(){
-
+        this.$store.commit("addCart",this.id)
     }
   },
   mounted() {

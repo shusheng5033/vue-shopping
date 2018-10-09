@@ -3,7 +3,7 @@
     <div class="header">
       <router-link to="/list" class="header-title">电商网站示例</router-link>
       <div class="header-menu">
-          <router-link to="/car" class="header-menu-cart">
+          <router-link to="/cart" class="header-menu-cart">
               购物车
               <span v-if="carList.length">{{ carList.length }}</span>
           </router-link>
